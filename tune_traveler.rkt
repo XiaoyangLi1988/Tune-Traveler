@@ -9,6 +9,7 @@
 (define GRID_SIZE 15)
 (define TILE_SIZE (/ F_HEIGHT GRID_SIZE))
 (define GRID_OFF (/ (abs (- F_WIDTH F_HEIGHT)) 2))
+(define A_TIMER 0)
 
 ; Resize the display window.
 (define (resize w h)
@@ -112,7 +113,18 @@
 
 ; Called after the window renders. Used to update objects.
 (define (update)
-  #t)
+  (if (>= A_TIMER 1)
+      (begin (set! A_TIMER 0)
+             (cond ((< (car player) (car goal)) 
+                    (set! player (cons (+ (car player) 1) (cdr player))))
+                   ((> (car player) (car goal))
+                    (set! player (cons (- (car player) 1) (cdr player))))
+                   ((< (cdr player) (cdr goal))
+                    (set! player (cons (car player) (+ (cdr player) 1))))
+                   ((> (cdr player) (cdr goal))
+                    (set! player (cons (car player) (- (cdr player) 1))))
+                   (else #f)))
+      (set! A_TIMER (+ A_TIMER 1/60))))
 
 ; Render everything to the frame.
 (define (draw-gl)
