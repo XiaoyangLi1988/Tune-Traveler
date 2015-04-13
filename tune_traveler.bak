@@ -148,7 +148,7 @@
   (glColor3f 1.0 0.0 0.0)
   (drawTile (cdr goal) (car goal))
   
-  ; Draw the "player". Can't be reduced with call to drawTile because of varying offsets to draw position.
+  ; Draw the "player".
   (define r (cdr player))
   (define c (car player))
   (define s (/ TILE_SIZE 4))
