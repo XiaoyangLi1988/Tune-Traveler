@@ -60,10 +60,7 @@
     (define/public (draw)
       (cond ((not canWalk)
              (begin (glColor3f 0.4 0.4 0.4)
-                    (glVertex3f (+ (* myCol TILE_SIZE) GRID_OFF) (* myRow TILE_SIZE) 0.0)
-                    (glVertex3f (+ (+ (* myCol TILE_SIZE) TILE_SIZE) GRID_OFF) (* myRow TILE_SIZE) 0.0)
-                    (glVertex3f (+ (+ (* myCol TILE_SIZE) TILE_SIZE) GRID_OFF) (+ TILE_SIZE (* myRow TILE_SIZE)) 0.0)
-                    (glVertex3f (+ (* myCol TILE_SIZE) GRID_OFF) (+ TILE_SIZE (* myRow TILE_SIZE)) 0.0)))
+                    (drawTile myRow myCol)))
             (else #f)))))
 
 ; Used to access elements of a one-dimensional array representing a two-dimensional array.
